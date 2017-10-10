@@ -1,0 +1,21 @@
+Describe the effect of the P, I, D components:
+
+- The P component is the proportional adjustment. It is proportional to the cross track error (CTE).
+  In my design, I added an angular component to this adjustment. Namely, instead of simple using
+  a multiple of the CTE, I added a multiple of the angle (namely angle/40) to this adjustment. I
+  found this improves the tracking performance through sharp turns.
+
+- The I component is the integral adjustment. It is proportional to the total CTE. It is used to
+  reduce systemic bias in the steering itself. In my code, I averaged the integral adjustment over
+  all iterations in order to prevent it from blowing up and dominate the other adjustments. 
+
+- The D component is the derivative adjustment. It is a counter-steering effect aimed to attenuating
+  the P component as CTE decreases to zero. It is proportional to the difference between the current
+  CTE and the previous CTE. In my code, I further multiplied this difference by the speed in order
+  to account for the time element (the reasoning being that the faster the vehicle is going, the more
+  counter-steering is needed to avoid overshooting).
+
+
+For tuning the hyperparameters Kp (tau_p), Ki (tau_i), and Kd (tau_d), I performed it manually. The
+difficulty in reinitializing a fresh run programmatically for each iteration made me decide against
+using the "twiddle" algorithm or some hyperparameter searching algorithm.
