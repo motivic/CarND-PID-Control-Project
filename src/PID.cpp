@@ -24,8 +24,7 @@ void PID::Init(double Kp, double Ki, double Kd) {
 void PID::UpdateError(double cte, double speed, double angle) {
     num_iterations += 1;
 
-    // p_error = cte+angle/40;
-    p_error = cte;
+    p_error = cte-angle/20;
 
     d_error = (cte-prev_cte)*speed;
     prev_cte = cte;

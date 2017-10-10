@@ -2,7 +2,7 @@ Describe the effect of the P, I, D components:
 
 - The P component is the proportional adjustment. It is proportional to the cross track error (CTE).
   In my design, I added an angular component to this adjustment. Namely, instead of simple using
-  a multiple of the CTE, I added a multiple of the angle (namely angle/40) to this adjustment. I
+  a multiple of the CTE, I subtracted a multiple of the angle (namely angle/20) to this adjustment. I
   found this improves the tracking performance through sharp turns.
 
 - The I component is the integral adjustment. It is proportional to the total CTE. It is used to

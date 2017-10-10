@@ -35,7 +35,7 @@ int main()
   PID pid;
   double p_init = 0.08;
   double i_init = 0.00055;
-  double d_init = 0.01;
+  double d_init = 0.025;
 
   pid.Init(p_init, i_init, d_init);
 
